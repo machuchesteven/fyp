@@ -5,6 +5,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/reporting', include('reporting.urls')),
     path('api/fining/', include('fining.urls')),
-    path('accounts', include('accounts.urls')),
+    path('accounts/', include('accounts.urls')),
     path('api-auth/', include('rest_framework.urls'))
 ]

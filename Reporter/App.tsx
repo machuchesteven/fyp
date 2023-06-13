@@ -1,15 +1,41 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import type { PropsWithChildren } from 'react';
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, Pressable, PermissionsAndroid, ToastAndroid, Image } from 'react-native';
+import {
+  SafeAreaView, ScrollView, StatusBar,
+  StyleSheet, Text, useColorScheme,
+  View, Pressable, PermissionsAndroid, Platform,
+  ToastAndroid, Image
+} from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { createStackNavigator } from '@react-navigation/stack';
+import { CameraRoll } from "@react-native-camera-roll/camera-roll";
 const cover = require('./motorcycle-rider.jpg');
 type SectionProps = PropsWithChildren<{
   title: string;
   onPress(): void;
 }>;
+
+async function hasAndroidPermission() {
+  const permission:String = Platform.Version >= 33 ? PermissionsAndroid.PERMISSIONS.READ_MEDIA_IMAGES : PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE;
+
+  const hasPermission = await PermissionsAndroid.check(permission);
+  if (hasPermission) {
+    return true;
+  }
+
+  const status = await PermissionsAndroid.request(permission);
+  return status === 'granted';
+}
+
+async function savePicture() {
+  if (Platform.OS === "android" && !(await hasAndroidPermission())) {
+    return;
+  }
+
+  CameraRoll.save(tag, { type:'photo', album })
+};
 
 const requestCameraPermission = async () => {
   try {
@@ -59,7 +85,7 @@ function Section({ children, title }: SectionProps): JSX.Element {
   );
 }
 
-function ShortToast(title: string, pressed: true):void {
+function ShortToast(title: string, pressed: true): void {
   if (pressed) {
     return (ToastAndroid.show(title, ToastAndroid.SHORT));
   }
@@ -89,7 +115,7 @@ function StartScreen({ route, navigation }: any): JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic">
         <Button title='Report A Case' onPress={requestCameraPermission} />
-        <Pressable onPress={()=> navigation.navigate('report')} style={[styles.solidButton,]}>
+        <Pressable onPress={() => navigation.navigate('report')} style={[styles.solidButton,]}>
           <View >
             <Text style={[styles.buttonText]}>
               Request Camera Demo
@@ -97,25 +123,27 @@ function StartScreen({ route, navigation }: any): JSX.Element {
           </View>
         </Pressable>
         <Button onPress={requestCameraPermission} title='Request camera' />
+        <Button onPress={() => { CameraRoll.getAlbums() }} title='Get Albums' />
+        <Button onPress={hasAndroidPermission} title='See permissions camera roll' />
       </ScrollView>
     </SafeAreaView>
   );
 }
-function ReportScreen({ route, navigation }: any): JSX.Element { 
+function ReportScreen({ route, navigation }: any): JSX.Element {
   navigation = useNavigation()
   return <SafeAreaView>
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Button onPress={()=>navigation.navigate('login')} title="Login" />
+      <Button onPress={() => navigation.navigate('login')} title="Login" />
     </ScrollView>
   </SafeAreaView>
 }
 
-function LoginScreen({ route, navigation }: any): JSX.Element { 
+function LoginScreen({ route, navigation }: any): JSX.Element {
   navigation = useNavigation()
   return <SafeAreaView>
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Image source={cover} style={[styles.coverImage]} />
-      <Button onPress={()=> navigation.navigate('start')} title="Go To Start" />
+      <Button onPress={() => navigation.navigate('start')} title="Go To Start" />
     </ScrollView>
   </SafeAreaView>
 }

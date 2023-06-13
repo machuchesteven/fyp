@@ -1,8 +1,10 @@
 import { useDisclosure, VStack, Flex, Button, HStack, chakra, Text, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, } from '@chakra-ui/react';
 
-import { Link } from 'react-router-dom'
-import React, { useRef } from "react";
+import { Link} from 'react-router-dom'
+import React, { useRef, useContext} from "react";
 import { IoMdMenu } from 'react-icons/io';
+import userContext from '../functions/userContext';
+
 
 function SimpleDrawer({ p = 15, placement = "right", width, isOpen, children, onClose, btnRef, title = "Menu", footer, }) {
   return (
@@ -58,6 +60,7 @@ function MobileDrawer() {
 };
 
 export default function Navigator() {
+  const user = useContext(userContext);
   return (
     <chakra.header id="header">
       <Flex
@@ -84,7 +87,7 @@ export default function Navigator() {
         </HStack>
         <HStack>
           <Button as={Link} to="login" borderColor={'#e3b305'} borderWidth={1} color={'#2008c4'}>
-            Login
+            {user.username? user.username: 'Anonymous'}
           </Button>
           <MobileDrawer />
         </HStack>

@@ -16,7 +16,7 @@ function HomePage() {
     const [number, setNumber] = useState('')
     const [violation, setViolation] = useState('')
     const [image, setImage] = useState('')
-
+    console.log(process.env.API_PATH)
     function submitReport() {
         axios.post('http://127.0.0.1:8000/accounts/quick-report', {
             'violation': violation,
