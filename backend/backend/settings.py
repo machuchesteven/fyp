@@ -1,7 +1,11 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-vt2id5ynj=w#yh%u3vx@=ub^209#lpje(ckl-_f&ft^2i0p$z7"
@@ -9,17 +13,20 @@ SECRET_KEY = "django-insecure-vt2id5ynj=w#yh%u3vx@=ub^209#lpje(ckl-_f&ft^2i0p$z7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ '127.0.0.1',
-    'localhost',]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
-    'http://127.0.0.1:3000',
-    'http://localhost:3000',
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
 ]
 CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:3000',
+    "http://127.0.0.1:3000",
+    "http://localhost:3000",
 ]
 # Application definition
 
@@ -123,6 +130,7 @@ REST_FRAMEWORK = {
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+MEDIA_URL = "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -1,20 +1,20 @@
 import axios from '../functions/axios';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Sidebar from '../components/Sidebar'
-import { Text, Heading, Button } from '@chakra-ui/react'
+import { Text, Heading, Card, Box, CardBody, CardFooter, SimpleGrid } from '@chakra-ui/react'
 import userContext from '../functions/userContext';
+import { Outlet, Navigate } from 'react-router-dom';
 
-
-function DashboardPage() {
+export default function DashboardPage() {
     const [dataList, setDataList] = useState([]);
     const [isFetched, setIsFetched] = useState(false);
     const [motorcycles, setMotorcycles] = useState([]);
     const controller = new AbortController();
     const [requestLogout, setRequestLogout] = useState(false);
-    const csrftoken = document.cookie.split()
+
     const logOut = async () => {
-        let loginURL = "http://127.0.0.1:8000/accounts/logout";
-        axios.post(loginURL, {
+        let logoutURL = "http://127.0.0.1:8000/accounts/logout";
+        axios.post(logoutURL, {
             withCredentials: true,
         })
             .then(response => {
@@ -28,7 +28,7 @@ function DashboardPage() {
     }
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/reporting/incidents/')
+        axios.get('http://127.0.0.1:8000/api/reporting/detected/')
             //     .then(response => {
             //         setDataList(response.data);
             //         console.log(dataList);
@@ -57,35 +57,40 @@ function DashboardPage() {
                 console.error(error);
             });
     }, []);
-    useEffect(() => {
-        if (requestLogout) {
-            logOut();
-        }
-    }, []);
-    function Datas() {
-        return <>
-            <Heading>{dataList.map(obj => {
-                <Text key={obj['id']}>{obj.name}</Text>
-            })}
-            </Heading>
-            {dataList.map((data) => {
-                <Heading key={data.id}>{data.date_reported}</Heading>
-            })}
-        </>
-    }
 
     return (<>
-        <userContext.Provider value={{ username: 'Anonymous' }}>
-            <Sidebar>
-                {dataList.map(data => (
-                    <Heading key={data.id}>{data.violation.name}</Heading>
-                ))}
-                <Button onClick={logOut}>Log Out</Button>
-                <Heading>Headingata Goes Here</Heading>
-            </Sidebar>
-        </userContext.Provider>
-    </>
-    )
+        <Sidebar>
+            <Box maxW={'6xl'}>
+                <Heading my={5}>Welcome Dashboard for System Administrators</Heading>
+                <SimpleGrid columns={3} spacing={5} my={5}>
+                    <Card backgroundColor='blue.400' color='white'>
+                        <Text textAlign={'center'} mt={3}>Reported</Text>
+                        <CardBody>
+                            <Heading textAlign={'center'}>{dataList.length}</Heading>
+                        </CardBody>
+                    </Card>
+                    <Card backgroundColor={'green.400'} color={'white'}>
+                        <Text textAlign={'center'} mt={3}>Detected</Text>
+                        <CardBody>
+                            <Heading textAlign={'center'}>{dataList.length}</Heading>
+                        </CardBody>
+                    </Card>
+                    <Card backgroundColor={'red.400'} color={'white'}>
+                        <Text textAlign={'center'} mt={3} >Violated</Text>
+                        <CardBody>
+                            <Heading textAlign={'center'}>0</Heading>
+                        </CardBody>
+                    </Card>
+                </SimpleGrid>
+
+                {/* {user.username == null ? <Navigate to='/login' /> : (<> */}
+
+                <Outlet datas={dataList} />
+
+            </Box></Sidebar>
+        {/* </>
+            )} */}
+    </>);
 }
 
-export default DashboardPage;
+// <userContext.Provider value={{ username: user.username }}> </userContext.Provider>

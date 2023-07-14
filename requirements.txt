@@ -1,0 +1,68 @@
+# activation of conda environment
+
+conda activate ../intelligent
+
+
+# activation of a djnago development environment
+
+source ../../intel/bin/activate
+
+# install torch and other packeges for nvidia make sure [nvcc is installed]
+# test torch if has detected nvidia
+
+import torch
+torch.__version__ 
+torch.cuda.is_available()
+
+
+# the model can be trained from the command line or from the python file
+
+# ssh to the hosted cloud instance
+ssh -i [path/to/key_file] username@pub_ipv4_address
+
+
+
+# starting a fastapi for helmet inspection document is
+uvicorn [app_file_name]:app --reload\
+
+
+
+# call a simple predict function with our Yolo model trained from the dataset
+yolo mode=predict --
+
+
+npx react-native run-android --reset-cache
+
+
+
+# building an image instance from the ubuntu server
+
+
+
+CREATE USER 'kassimu'@'localhost' IDENTIFIED WITH authentication_plugin BY '@Coictproject';
+
+
+new servers creating and identifying a mysql user
+ALTER USER 'root'@'localhost' IDENTIFIED WITH auth_socket;
+
+
+
+create user 'kassimu'@'localhost' identified by '@Coictproject*';
+grant usage on consultation.* to 'kassimu'@'localhost';
+grant all privileges on consultation.* to 'kassimu'@'localhost';
+
+
+
+
+
+
+
+from ultralytics import YOLO
+model = YOLO(model="path_to_model")
+def predict():  
+    results = model.predict(source="2.jpg", save=True, imgsz=320, show=True, conf=0.8)
+    class_labels = results.xyxy[0][:, -1].tolist()
+    print(results)
+    return results
+
+

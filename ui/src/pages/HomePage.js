@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react'
-import { Flex, Heading, Text, Button, Center, Modal, ModalCloseButton, ModalHeader, ModalContent, ModalBody, ModalOverlay, ModalFooter, useDisclosure, useColorModeValue, Box, VStack, FormLabel, FormControl, Input } from '@chakra-ui/react'
+import { Flex, Heading, Text, Button, Center, Modal, ModalCloseButton, ModalHeader, ModalContent, ModalBody, ModalOverlay, ModalFooter, useDisclosure, useColorModeValue, Box, VStack, FormLabel, FormControl, Input, Icon, HStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import getLocation from '../functions/getLocation'
 import axios from 'axios'
@@ -9,7 +9,6 @@ function pickLocation() {
     let area = getLocation(true)
     return area
 }
-
 
 function HomePage() {
     const [desc, setDesc] = useState('')
@@ -27,12 +26,12 @@ function HomePage() {
             console.log(response);
         });
     }
-    
+
     function ReportForm() {
         const { isOpen, onOpen, onClose } = useDisclosure()
         return (
             <>
-                <Button onClick={onOpen}>Report Form</Button>
+                <Button onClick={onOpen}>Report Incident</Button>
                 <Modal isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
@@ -75,10 +74,16 @@ function HomePage() {
             <Flex bg={useColorModeValue('gray.50', 'gray.800')} align={'center'} justify={'center'} minH={'80vh'}>
 
                 <VStack>
-                    <Heading textAlign={'center'} marginY={[5, null, 15]}>Welcome To Motorcycle Inspection System</Heading>
-                    <Text textAlign={'center'} marginY={5}>The system Helps You Report Any Incident concerning Motorcyclists in Tanzania</Text>
-                    <Center my={5}><ReportForm /></Center>
-                    <Button as={Link} to={'/dashboard'}>Go to Dashoard</Button>
+                    <Heading textAlign={'center'} marginY={[5, null, 15]}>Welcome To Motorcyclist Helmet Inspection System</Heading>
+                    <Text textAlign={'center'} marginY={5}>The system Helps You Report Any Incident concerning Motorcyclists in Tanzania,<br />
+                        Our Aim is to join hands with you in reducing incidents including motorcycles</Text>
+                    <Text textAlign={'center'} my={5}>
+                        Report on Mobile Application
+                    </Text>
+                    <Center my={5}><HStack>
+                        <ReportForm />
+                        <Button as={Link} color={'blue.500'} borderColor={'blue.500'} borderWidth={1}>Download App</Button>
+                    </HStack></Center>
                 </VStack>
             </Flex>
         </>

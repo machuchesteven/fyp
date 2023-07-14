@@ -1,0 +1,53 @@
+// process results from the Yolo
+for result in results:
+    boxes = result.boxes  # Boxes object for bbox outputs
+    masks = result.masks  # Masks object for segmentation masks outputs
+    keypoints = result.keypoints  # Keypoints object for pose outputs
+    probs = result.probs # Class probabilities for classification outputs
+
+// for Helmet inspection testing data, where the model have to be loaded with the model path
+from ultralytics import YOLO
+
+# Load a pretrained YOLOv8n model
+model = YOLO('yolov8n.pt')
+
+# Define path to the image file
+source = 'path/to/image.jpg'
+
+# Run inference on the source
+results = model(source)
+
+
+// /home/machu/Desktop/intelligent/fyp/helmet/runs/detect/train/weights/bes
+
+\
+\import requests
+
+def make_django_api_call():
+    django_api_url = 'https://your-django-api-url.com/api/endpoint'
+
+    # Prepare the request data (if required)
+    data = {
+        'key1': 'value1',
+        'key2': 'value2'
+    }
+
+    try:
+        response = requests.post(django_api_url, json=data)
+        # Or use requests.get, requests.put, requests.patch, etc. depending on your API endpoint
+
+        # Handle the response
+        if response.status_code == 200:
+            # Successful API call
+            result = response.json()
+            # Process the result or return it as needed
+            return result
+        else:
+            # Handle error scenarios
+            print(f"API call failed with status code: {response.status_code}")
+            return None
+
+    except requests.exceptions.RequestException as e:
+        # Handle any exceptions that occurred during the API call
+        print(f"An error occurred: {e}")
+        return None

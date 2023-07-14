@@ -1,12 +1,15 @@
 import { useDisclosure, VStack, Flex, Button, HStack, chakra, Text, Drawer, DrawerBody, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton, } from '@chakra-ui/react';
-
-import { Link} from 'react-router-dom'
-import React, { useRef, useContext} from "react";
+import axios from '../functions/axios';
+import { Link, Navigate } from 'react-router-dom'
+import React, { useRef, useContext } from "react";
 import { IoMdMenu } from 'react-icons/io';
 import userContext from '../functions/userContext';
 
 
+
 function SimpleDrawer({ p = 15, placement = "right", width, isOpen, children, onClose, btnRef, title = "Menu", footer, }) {
+
+
   return (
     <Flex w={width}>
       <Drawer
@@ -44,13 +47,13 @@ function MobileDrawer() {
         finalFocusRef={btnRef}
       >
         <VStack alignItems="left">
-          <Link to='/'>
+          <Link to='/report'>
             <Button variant="nav">Report</Button>
           </Link>
-          <Link to='/'>
+          <Link to='/awareness'>
             <Button variant="nav">Awareness</Button>
           </Link>
-          <Link to='/'>
+          <Link to='/inspect'>
             <Button variant="nav">Inspect</Button>
           </Link>
         </VStack>
@@ -61,11 +64,26 @@ function MobileDrawer() {
 
 export default function Navigator() {
   const user = useContext(userContext);
+
+  const logOut = async () => {
+    let logoutURL = "http://127.0.0.1:8000/accounts/logout";
+    axios.post(logoutURL, {
+      withCredentials: true,
+    })
+      .then(response => {
+        console.log(response.data['message'])
+        return <Navigate to="/login" />
+
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
   return (
     <chakra.header id="header">
       <Flex
         w={{ base: "100%", md: '80%' }}
-        mx={{base: 'none', md: '10%'}}
+        mx={{ base: 'none', md: '10%' }}
         px={5}
         py={3}
         align="center"
@@ -75,7 +93,7 @@ export default function Navigator() {
           <Text fontSize="28px" as='b'>HIS</Text>
         </HStack>
         <HStack as="nav" spacing="5" display={{ base: "none", md: "flex" }}>
-        <Link to='/report'>
+          <Link to='/report'>
             <Button variant="nav">Reports</Button>
           </Link>
           <Link to='/awareness'>
@@ -85,10 +103,12 @@ export default function Navigator() {
             <Button variant="nav">Inspect</Button>
           </Link>
         </HStack>
-        <HStack>
-          <Button as={Link} to="login" borderColor={'#e3b305'} borderWidth={1} color={'#2008c4'}>
-            {user.username? user.username: 'Anonymous'}
-          </Button>
+        <HStack> {user == "" ? <Button onClick={logOut} borderColor={'#e3b305'} borderWidth={1} color={'#2008c4'}>
+          Logout
+        </Button> : <Button as={Link} to="login" borderColor={'#e3b305'} borderWidth={1} color={'#2008c4'}>
+          Login
+        </Button>}
+
           <MobileDrawer />
         </HStack>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Heading, Text, Tag, HStack, Center } from '@chakra-ui/react'
+import { Box, Heading, Text, Tag, HStack, Center, Flex, useColorModeValue, VStack } from '@chakra-ui/react'
 import axios from '../functions/axios'
 function ReportPage() {
   const [dataList, setDataList] = useState([]);
@@ -36,18 +36,20 @@ function ReportPage() {
         console.error(error);
       });
   }, []);
-
-  return (
-    <Box minH={'80vh'} paddingRight={[1, null, 5]} justfy={'center'} align={'center'}>
-      <Heading>Report Page </Heading>
-      {dataList.map(data => (
-        <Box key={data.id} mb={{ sm: 2, md: 4 }}>
-          <Center><HStack><Heading>{data.violation.name}</Heading><Text> reported on </Text><Heading>{data.date_reported}</Heading></HStack></Center>
-          <Text mb={2}>{data.violation.description} commited by <Tag>{data.motorcycle_info.plate_number}</Tag></Text>
-          <hr />
-        </Box>
-      ))}
-    </Box>
+  return (<Flex bg={useColorModeValue('gray.50', 'gray.800')} align={'center'} justify={'center'} minH={'80vh'}>
+    <VStack maxW={'6xl'}>
+      <Box>
+        <Heading>Here, You Get A Summary of The Ongoing Reports</Heading>
+        {dataList.map(data => (
+          <Box key={data.id} mb={{ sm: 2, md: 4 }}>
+            <HStack><Heading>{data.violation.name}</Heading><Text> reported on </Text><Heading>{data.date_reported}</Heading></HStack>
+            <Text mb={2}>{data.violation.description} commited by <Tag>{data.motorcycle_info.plate_number}</Tag></Text>
+            <hr />
+          </Box>
+        ))}
+      </Box>
+    </VStack>
+  </Flex>
   )
 }
 

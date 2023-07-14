@@ -1,0 +1,7 @@
+train: /home/machu/Desktop/intelligent/fyp/helmet/train
+val: /home/machu/Desktop/intelligent/fyp/helmet/val
+nc:  2
+
+names: ['helmet', 'motorcycle']
+
+

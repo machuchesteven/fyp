@@ -1,5 +1,6 @@
 import React from 'react'
 import {Center, Text} from '@chakra-ui/react'
+
 function Footer() {
   return (
     <Center my={5}>
@@ -9,3 +10,5 @@ function Footer() {
 }
 
 export default Footer
+
+

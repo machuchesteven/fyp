@@ -1,0 +1,7 @@
+train: /home/machu/Desktop/intelligent/fyp/num_plate/train
+val: /home/machu/Desktop/intelligent/fyp/num_plate/val
+nc:  1
+
+names: ['plate_number']
+
+

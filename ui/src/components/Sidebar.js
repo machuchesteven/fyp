@@ -1,41 +1,20 @@
-import React, { ReactNode } from 'react';
-import {
-  IconButton,
-  Box,
-  CloseButton,
-  Flex,
-  Icon,
-  useColorModeValue,
-  Link,
-  Drawer,
-  DrawerContent,
-  Text,
-  useDisclosure,
-  BoxProps,
-  FlexProps,
-} from '@chakra-ui/react';
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-} from 'react-icons/fi';
-import { IconType } from 'react-icons';
-import { ReactText } from 'react';
+import React, { useState } from 'react';
+import { IconButton, Button, Box, CloseButton, Flex, Icon, useColorModeValue, Link, Drawer, DrawerContent, Text, useDisclosure } from '@chakra-ui/react';
+import { FiHome, FiTrendingUp, FiCompass, FiStar, FiSettings, FiMenu, } from 'react-icons/fi';
+import { Link as RouteLink, Navigate } from 'react-router-dom'
 
 
 const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'Main', icon: FiHome, path: 'main' },
+  { name: 'Summary', icon: FiTrendingUp, path: 'stats' },
+  { name: 'Incidents', icon: FiCompass, path: 'incidents' },
+  { name: 'Tickets', icon: FiStar, path: 'tickets' },
+  { name: 'PDF Reports', icon: FiSettings, path: 'reportpdf' },
 ];
 
 export default function SimpleSidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isAuth, setIsAuth] = useState(true);
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
@@ -63,7 +42,7 @@ export default function SimpleSidebar({ children }) {
   );
 }
 
-
+function logOut() { <Navigate to="../../" /> }
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -76,24 +55,26 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          HIS
+        <Text fontSize="2xl" fontWeight="bold">
+          Inspector Dashboard
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} path={link.path}>
           {link.name}
         </NavItem>
       ))}
+
+      <Button display={{ sm: 'none', md: 'block' }} mx="4" pr={5} my={5} onClick={logOut}>Log Out</Button>
     </Box>
   );
 };
 
 
-const NavItem = ({ icon, children, ...rest }) => {
+const NavItem = ({ icon, children, path, ...rest }) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link as={RouteLink} to={path} style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
         align="center"
         p="4"
@@ -102,7 +83,7 @@ const NavItem = ({ icon, children, ...rest }) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: 'cyan.400',
+          bg: 'blue.400',
           color: 'white',
         }}
         {...rest}>
@@ -142,8 +123,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
 
-      <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
+      <Text fontSize="2xl" ml="8" fontWeight="bold">
+        HIS
       </Text>
     </Flex>
   );

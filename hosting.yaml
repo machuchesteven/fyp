@@ -1,0 +1,60 @@
+Global
+         Protocols: -LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+  resolv.conf mode: stub
+Current DNS Server: xx.xx.xx.3
+       DNS Servers: xx.xx.xx.2 xx.xx.xx.3
+
+Link 2 (eth0)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: xx.xx.xx.3
+       DNS Servers: xx.xx.xx.2 xx.xx.xx.3
+
+Link 3 (eth1)
+    Current Scopes: DNS
+         Protocols: +DefaultRoute +LLMNR -mDNS -DNSOverTLS DNSSEC=no/unsupported
+Current DNS Server: xx.xx.xx.3
+       DNS Servers: xx.xx.xx.2 xx.xx.xx.3
+
+
+kassimu22@*Coictproject
+
+
+# remove digitalocean repos from a digitalocean droplet
+sudo rm /etc/apt/sources.list.d/digitalocean-agent.list
+
+# to ssh to a cloud provider
+ssh -i /path/key-pair-name.pem instance-user-name@instance-public-dns-name
+
+
+ssh -i /home/machu/.ssh/kassim.pem root@44.203.157.165
+
+Permissions 0664 for 'keypath.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+
+
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+
+
+creation of a script to run and install django on aws
+sudo apt update & sudo apt upgrade -y 
+sudo apt install -y python3-pip python3-dev python3-setuptools python3-virtualenv 
+mkdir -p /var/www/
+cd /var/www/
+venv .
+source ./bin/activate
+git clone https://github.com/$1/$2.git
+cd $2
+pip3 install -r requirements.txt
+django-admin manage.py migrate
+django-admin manage.py runserver 0.0.0.0:80
+
+
+database_user = kassimu
+database_password = @Coictproject*
+database_name = kassim

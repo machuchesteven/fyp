@@ -87,3 +87,13 @@ xcuserdata
 
 *.env
 *db.sqlite3
+
+
+*.weights
+
+images/*
+
+*/yolov*
+
+
+/helmet/runs/*
