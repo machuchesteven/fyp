@@ -1,0 +1,77 @@
+# Helmet Inspection System
+
+This repository contains the source code for a Helmet Inspection System, which includes components such as a Django backend, a React frontend, a Flask API for helmet prediction, a React Native mobile app, and a number plate inspection module.
+
+## Project Structure
+
+The project structure is organized as follows:
+
+- `/backend/`: This directory contains the Django backend code. It handles the server-side logic, database interactions, and API endpoints for the application.
+
+- `/ui/`: The React frontend code resides in this directory. It provides the user interface for interacting with the Helmet Inspection System, displaying information, and handling user actions.
+
+- `/helmet/`: Here you can find the Flask API for helmet prediction. The `predict_api.py` file is used to start the Flask server, which accepts requests for helmet prediction and provides the corresponding responses.
+
+- `/MobileApp/`: This directory contains the React Native mobile app code. It is responsible for creating a mobile interface to access and utilize the features of the Helmet Inspection System.
+
+- `/number_plate/`: The number plate inspection module is located in this directory. It includes code for processing images of number plates and extracting relevant information for vehicle identification.
+
+- `README.md`: The top-level README file you are currently reading, providing an overview of the project structure and its components.
+<!-- 
+## Getting Started
+
+To set up and run the Helmet Inspection System, follow the instructions in the individual directories for each component. Detailed guides and installation steps can be found in the respective README files within each component's directory. -->
+
+## Getting Started
+
+To set up and run the Helmet Inspection System, follow the instructions below for each component:
+
+### Backend
+
+1. Navigate to the `/backend/` directory.
+2. Create a virtual environment (optional but recommended).
+3. Install the required dependencies by running the following command: `pip install -r requirements.txt`
+4. Start the Django development server: `python manage.py runserver 0.0.0.0:8000`
+
+### UI
+
+1. Navigate to the `/ui/` directory.
+2. Install Node.js and npm (if not already installed).
+3. Install the necessary dependencies by running the following command: `npm install`
+4. Start the React development server: `npm start`
+5. To build for deployment run `npm run build`
+6. Copy the `/build/` directory to you deployment server folder and serve the server
+
+### Helmet Inspection API
+
+1. Navigate to the `/helmet/` directory.
+2. Create a virtual environment (optional but recommended due to conflicting resources challenge).
+3. Install the required dependencies by running the following command: `pip install -r requirements.txt`
+4. Start the Flask server for the helmet prediction API: `cd helmet && python predict_api.py`
+
+### Mobile App
+
+1. Navigate to the `/MobileApp/` directory.
+2. Install Node.js and npm (if not already installed).
+3. Install the necessary dependencies by running the following command: `npm install`
+4. Build the Mobile App: `npx react-native run-android`.'
+5. Start the React Native development server: `npm start`
+6. For iOS follow the development guide using XCode
+
+### Number Plate Inspection Project
+1. Navigate to the `/number_plate/` directory.
+2. Create a virtual environment (optional but recommended).
+3. Install the required dependencies by running the following command: `pip install -r requirements.txt`
+4. Start the number plate inspection module: `python main.py`
+
+
+## Contributing
+
+If you'd like to contribute to the project, please read the CONTRIBUTING.md file (if present) to understand the guidelines for contributing. We welcome contributions, bug reports, and feature requests.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.txt). You are free to modify, distribute, and use the code within the terms specified in the license and the the FYP Policy of the University of Dar es Salaam
+
+
+
