@@ -131,6 +131,19 @@ Once you have successfully logged in as an administrator, you will have access t
 Please note that the available features and options may vary depending on the configuration and permissions set for the administrator account.
 
 
+
+
+## References
+
+- [React Native](https://reactnative.dev/): Official website for React Native framework.
+  - [React Native Documentation](https://reactnative.dev/docs): Comprehensive documentation for React Native, including guides, API references, and more.
+  - [React Native GitHub Repository](https://github.com/facebook/react-native): GitHub repository for React Native, where you can find the latest releases, issue tracking, and community contributions.
+
+- [Django](https://www.djangoproject.com/): Official website for Django framework.
+  - [Django Documentation](https://docs.djangoproject.com/): Extensive documentation for Django, covering topics like installation, configuration, models, views, and more.
+  - [Django GitHub Repository](https://github.com/django/django): GitHub repository for Django, containing the source code, bug reports, and feature requests.
+
+Please refer to the official documentation and repositories for React Native and Django for detailed information, tutorials, and support regarding these frameworks.
 ## Contributing
 
 If you'd like to contribute to the project, please read the CONTRIBUTING.md file (if present) to understand the guidelines for contributing. We welcome contributions, bug reports, and feature requests.
