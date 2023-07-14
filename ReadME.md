@@ -65,6 +65,76 @@ To set up and run the Helmet Inspection System, follow the instructions below fo
 4. Start the number plate inspection module: `python main.py`
 
 
+## Usage Manual
+usage instructions for normal users and admins are as follows
+
+## For Normal Users
+### Installation
+
+1. Go to the [The Website](127.0.0.1/3000) and click Download App button in the hero section 
+2. Download and install the app on your mobile device.
+3. Launch the app to begin using it.
+
+### Reporting a Violation
+
+1. Open the Helmet Inspection System app on your mobile device 
+2. Tap on the "capture a picture" tab in the home screen.
+3. Allow the app to access your device's camera and microphone when prompted.
+4. Position your device to capture a clear picture of the motorcycle violating helmet with number plate.
+5. Tap the camera button to take a picture. You can retake the picture you wish by clicking the "Retry" Button
+6. Add a description or any relevant details regarding the violation in the provided text field.
+7. Tap the "Submit" button to submit the report.
+
+### Inspecting Submitted Motorcycles
+
+1. Open your preferred web browser and go to [Helmet Inspection System website]()
+2. Navigate to the "Inspect" tab on the website.
+3. Enter the license plate number of the motorcycle you want to inspect
+4. Click on the "Inspect" button to initiate the inspection process.
+5. The system will provide information about the submitted violation, including images and additional details if available.
+
+
+## Helmet Inspection System - Admin Guide
+
+Welcome, administrator! This guide provides instructions on how to access and utilize the administrative features of the Helmet Inspection System.
+
+## Admin Login
+
+1. Open your preferred web browser and go to the [Helmet Inspection System website](website-url).
+2. Navigate to the "Admin Login" page.
+3. Enter your administrator credentials (username and password) in the provided fields.
+4. Click on the "Login" button to authenticate and access the admin dashboard.
+
+## Admin Dashboard
+
+Once you have successfully logged in as an administrator, you will have access to the admin dashboard.
+
+### Reports Tab
+
+1. Click on the "Reports" tab in the admin dashboard.
+2. You will see a list of reported violations.
+3. You can view the details of each report, including the images and descriptions submitted by users.
+
+### Tickets Tab
+
+1. Navigate to the "Tickets" tab in the admin dashboard.
+2. Here, you can manage and track the tickets assigned to your team.
+3. View and update ticket statuses, add comments, and assign tickets to specific team members.
+
+### Generating PDF Reports
+
+1. From the main dashboard page, click on the "Generate PDF Report" button.
+2. Select the desired parameters, such as the date range or specific incident types.
+3. Click on the "Generate Report" button to create a PDF report summarizing the selected incidents.
+4. The PDF report will be generated and made available for download or printing.
+
+Please note that the available features and options may vary depending on the configuration and permissions set for the administrator account.
+
+If you encounter any issues or need additional support, please reach out to the system administrator or contact our support team at [support-email@example.com](mailto:support-email@example.com).
+
+Enjoy managing the Helmet Inspection System as an administrator!
+
+
 ## Contributing
 
 If you'd like to contribute to the project, please read the CONTRIBUTING.md file (if present) to understand the guidelines for contributing. We welcome contributions, bug reports, and feature requests.
