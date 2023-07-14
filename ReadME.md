@@ -130,10 +130,6 @@ Once you have successfully logged in as an administrator, you will have access t
 
 Please note that the available features and options may vary depending on the configuration and permissions set for the administrator account.
 
-If you encounter any issues or need additional support, please reach out to the system administrator or contact our support team at [support-email@example.com](mailto:support-email@example.com).
-
-Enjoy managing the Helmet Inspection System as an administrator!
-
 
 ## Contributing
 
@@ -141,7 +137,7 @@ If you'd like to contribute to the project, please read the CONTRIBUTING.md file
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.txt). You are free to modify, distribute, and use the code within the terms specified in the license and the the FYP Policy of the University of Dar es Salaam
+This project is licensed under the FYP Policy of the University of Dar es Salaam
 
 
 
